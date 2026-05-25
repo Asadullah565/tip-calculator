@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SplitEase — Tip Calculator</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+ 
+</head>
+<body>
+
+<header>
+  <h1>Split<em>Ease</em></h1>
+  <p>Tip calculator &amp; bill splitter</p>
+</header>
+
+<main class="app-layout" role="main">
+  <!-- Inputs -->
+  <section class="card" aria-label="Calculator inputs">
+    <p class="card-title" aria-hidden="true">Enter details</p>
+
+    <!-- Bill Amount -->
+    <div class="field-group">
+      <label for="bill">Bill amount</label>
+      <div class="input-wrap">
+        <span class="input-prefix" aria-hidden="true">Rs</span>
+        <input
+          type="number"
+          id="bill"
+          class="has-prefix"
+          placeholder="0.00"
+          min="0"
+          step="0.01"
+          inputmode="decimal"
+          autocomplete="off"
+          aria-describedby="bill-error"
+          aria-label="Bill amount in Pakistani Rupees"
+        />
+      </div>
+      <p class="error-msg" id="bill-error" role="alert" aria-live="polite"></p>
+    </div>
+
+    <!-- Tip Percentage -->
+    <div class="field-group">
+      <label>Tip percentage</label>
+      <div class="tip-presets" role="group" aria-label="Tip percentage presets">
+        <button class="preset-btn" data-tip="10" aria-pressed="false">10%</button>
+        <button class="preset-btn" data-tip="15" aria-pressed="false">15%</button>
+        <button class="preset-btn" data-tip="20" aria-pressed="false">20%</button>
+      </div>
+      <p class="custom-tip-label">Or enter custom %</p>
+      <div class="input-wrap">
+        <input
+          type="number"
+          id="tip"
+          class="has-suffix"
+          placeholder="0"
+          min="0"
+          max="100"
+          step="0.5"
+          inputmode="decimal"
+          autocomplete="off"
+          aria-describedby="tip-error"
+          aria-label="Custom tip percentage"
+        />
+        <span class="input-suffix" aria-hidden="true">%</span>
+      </div>
+      <p class="error-msg" id="tip-error" role="alert" aria-live="polite"></p>
+    </div>
+
+    <div class="divider" role="separator"></div>
+
+    <!-- Number of People -->
+    <div class="field-group">
+      <label for="people">Number of people</label>
+      <div class="people-stepper" id="people-stepper">
+        <button class="step-btn" id="dec-btn" aria-label="Decrease number of people" tabindex="0">−</button>
+        <input
+          type="number"
+          id="people"
+          value="2"
+          min="1"
+          max="999"
+          step="1"
+          inputmode="numeric"
+          autocomplete="off"
+          aria-describedby="people-error"
+          aria-label="Number of people splitting the bill"
+        />
+        <button class="step-btn" id="inc-btn" aria-label="Increase number of people" tabindex="0">+</button>
+      </div>
+      <p class="error-msg" id="people-error" role="alert" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <!-- Results -->
+  <section class="result-panel" aria-label="Calculation results" aria-live="polite">
+    <p class="card-title">Per person</p>
+
+    <div id="results-content">
+      <div class="per-person-section">
+        <p class="per-person-label">Each person pays</p>
+        <p class="per-person-amount" id="per-person-display" aria-label="Amount per person">
+          <span class="per-person-currency" aria-hidden="true">Rs</span><span id="per-person-value">—</span>
+        </p>
+        <p class="per-person-note" id="per-person-note"></p>
+      </div>
+
+      <div class="breakdown">
+        <div class="breakdown-row">
+          <span class="breakdown-label">Bill subtotal</span>
+          <span class="breakdown-value" id="bill-display">Rs —</span>
+        </div>
+        <div class="breakdown-row highlight">
+          <span class="breakdown-label">Tip amount</span>
+          <span class="breakdown-value" id="tip-display">Rs —</span>
+        </div>
+        <div class="breakdown-divider" role="separator"></div>
+        <div class="breakdown-row">
+          <span class="breakdown-label">Grand total</span>
+          <span class="breakdown-value" id="total-display">Rs —</span>
+        </div>
+      </div>
+    </div>
+
+    <button class="reset-btn" id="reset-btn" aria-label="Reset all fields to default values">
+      Reset
+    </button>
+  </section>
+</main>
+<script src="./js/main.js"></script>
+
+</body>
+</html>
